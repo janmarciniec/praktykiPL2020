@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Praktyki.Models.Subject>
+
+
+@{ ViewData["Title"] = "Przedmioty"; }
+
+    <h1>Przedmiot @Model.ElementAt(0).Name </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Hour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Teacher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Group)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Subject)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            foreach (var value in item.Reservations)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => value.Room.Nr)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => value.Hour.Hours)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => value.Teacher.Title)
+        @Html.DisplayFor(modelItem => value.Teacher.FirstName)
+        @Html.DisplayFor(modelItem => value.Teacher.SecondName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => value.Group.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => value.Subject.Name)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-controller="Reservations" asp-route-id="@value.Id">Edytuj</a> |
+        <a asp-action="Delete" asp-controller="Reservations" asp-route-id="@value.Id">Usuń</a>
+    </td>
+</tr>}
+            }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Powrót</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
