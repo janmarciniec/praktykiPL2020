@@ -4,23 +4,22 @@
     ViewData["Title"] = "Usuwanie godziny";
 }
 
-    <h1>Usuwanie godziny</h1>
+<h3 class="my-4">Czy chcesz usunąć poniższą godzinę?</h3>
 
-    <h3>Czy chcesz usunąć poniższą godzinę?</h3>
 <div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Hours)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Hours)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Usuń" class="btn btn-danger" /> |
-        <a asp-action="Index">Powrót</a>
+        <input type="submit" value="Usuń" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Powrót</a>
     </form>
 </div>

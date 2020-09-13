@@ -2,18 +2,13 @@
 
 @{ ViewData["Title"] = "Przedmioty"; }
 
-<h1>Przedmioty</h1>
-
-<p>
-    <a asp-action="Create">Dodaj przedmiot</a> &nbsp;&nbsp;&nbsp;&nbsp;
-    <a asp-action="Search">Wyszukaj przedmiot</a>
-</p>
+<h1 class="my-4">Przedmioty</h1>
 
 @if (Model.Count() > 0)
 {
-    <table class="table">
+    <table class="table table-striped table-bordered">
         <thead>
-            <tr>
+            <tr class="table-secondary">
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
@@ -27,10 +22,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
-                    </td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm"><i class="far fa-edit"></i> Edytuj</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Usuń</a>
                 </tr>
             }
         </tbody>
@@ -39,5 +33,11 @@
 }
 else
 {
-    <b class="mt-5">Brak dodanych przedmiotów.</b>
+    <div class="mb-3">
+        <b>Brak dodanych przedmiotów.</b>
+    </div>
 }
+
+<div>
+    <a asp-action="Create" class="btn btn-primary btn-lg"><i class="fas fa-plus"></i> Dodaj przedmiot</a>
+</div>

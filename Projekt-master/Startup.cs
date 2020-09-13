@@ -32,7 +32,7 @@ namespace Praktyki
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer//(Configuration.GetConnectionString(@"LAPTOP-91JU9GJ0\SQLEXPRESS")));
-            (Configuration.GetConnectionString("KarolConnection")));
+            (Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {

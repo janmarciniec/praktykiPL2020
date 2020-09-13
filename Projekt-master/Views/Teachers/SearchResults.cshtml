@@ -3,63 +3,340 @@
 
 @{ ViewData["Title"] = "Zajęcia nauczyciela"; }
 
-<h1>Zajęcia @Model.ElementAt(0).FirstName @Model.ElementAt(0).SecondName</h1>
+<h1 class="my-4">Zajęcia prowadzone przez: @Model.ElementAt(0).Title @Model.ElementAt(0).FirstName @Model.ElementAt(0).SecondName</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Room)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Hour)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Teacher)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Group)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Subject)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            foreach (var value in item.Reservations)
+<h3 class="mt-5">Poniedziałek</h3>
+
+@if (Model.ElementAt(0).Reservations.Where(x => x.Day.Name == "Poniedziałek").Count() > 0)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-secondary">
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Teacher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Group)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => value.Room.Nr)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => value.Hour.Hours)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => value.Teacher.Title)
-        @Html.DisplayFor(modelItem => value.Teacher.FirstName)
-        @Html.DisplayFor(modelItem => value.Teacher.SecondName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => value.Group.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => value.Subject.Name)
-    </td>
-    <td>
-        <a asp-action="Edit" asp-controller="Reservations" asp-route-id="@value.Id">Edytuj</a> |
-        <a asp-action="Delete" asp-controller="Reservations" asp-route-id="@value.Id">Usuń</a>
-    </td>
-</tr>
+                @foreach (var value in item.Reservations.Where(x => x.Day.Name == "Poniedziałek"))
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Hour.Hours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Teacher.Title)
+                            @Html.DisplayFor(modelItem => value.Teacher.FirstName)
+                            @Html.DisplayFor(modelItem => value.Teacher.SecondName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Group.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Subject.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Room.Nr)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-success btn-sm mb-1 mb-md-0"><i class="far fa-edit"></i> Edytuj</a>
+                            <a asp-action="Delete" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Usuń</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
 }
+else
+{
+    <div class="mb-4">
+        <b>Brak zajęć.</b>
+    </div>
 }
-    </tbody>
-</table>
+
+<h3 class="mt-4">Wtorek</h3>
+
+@if (Model.ElementAt(0).Reservations.Where(x => x.Day.Name == "Wtorek").Count() > 0)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-secondary">
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Teacher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Group)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @foreach (var value in item.Reservations.Where(x => x.Day.Name == "Wtorek"))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Hour.Hours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Teacher.Title)
+                            @Html.DisplayFor(modelItem => value.Teacher.FirstName)
+                            @Html.DisplayFor(modelItem => value.Teacher.SecondName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Group.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Subject.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Room.Nr)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-success btn-sm mb-1 mb-md-0"><i class="far fa-edit"></i> Edytuj</a>
+                            <a asp-action="Delete" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Usuń</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mb-4">
+        <b>Brak zajęć.</b>
+    </div>
+}
+
+<h3 class="mt-4">Środa</h3>
+
+@if (Model.ElementAt(0).Reservations.Where(x => x.Day.Name == "Środa").Count() > 0)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-secondary">
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Teacher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Group)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @foreach (var value in item.Reservations.Where(x => x.Day.Name == "Środa"))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Hour.Hours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Teacher.Title)
+                            @Html.DisplayFor(modelItem => value.Teacher.FirstName)
+                            @Html.DisplayFor(modelItem => value.Teacher.SecondName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Group.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Subject.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Room.Nr)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-success btn-sm mb-1 mb-md-0"><i class="far fa-edit"></i> Edytuj</a>
+                            <a asp-action="Delete" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Usuń</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mb-4">
+        <b>Brak zajęć.</b>
+    </div>
+}
+
+<h3 class="mt-4">Czwartek</h3>
+
+@if (Model.ElementAt(0).Reservations.Where(x => x.Day.Name == "Czwartek").Count() > 0)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-secondary">
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Teacher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Group)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @foreach (var value in item.Reservations.Where(x => x.Day.Name == "Czwartek"))
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Hour.Hours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Teacher.Title)
+                            @Html.DisplayFor(modelItem => value.Teacher.FirstName)
+                            @Html.DisplayFor(modelItem => value.Teacher.SecondName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Group.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Subject.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Room.Nr)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-success btn-sm mb-1 mb-md-0"><i class="far fa-edit"></i> Edytuj</a>
+                            <a asp-action="Delete" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Usuń</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mb-4">
+        <b>Brak zajęć.</b>
+    </div>
+}
+
+
+<h3 class="mt-4">Piątek</h3>
+
+@if (Model.ElementAt(0).Reservations.Where(x => x.Day.Name == "Piątek").Count() > 0)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-secondary">
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Teacher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Group)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reservations.FirstOrDefault().Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @foreach (var value in item.Reservations.Where(x => x.Day.Name == "Piątek"))
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Hour.Hours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Teacher.Title)
+                            @Html.DisplayFor(modelItem => value.Teacher.FirstName)
+                            @Html.DisplayFor(modelItem => value.Teacher.SecondName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Group.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Subject.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => value.Room.Nr)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-success btn-sm mb-1 mb-md-0"><i class="far fa-edit"></i> Edytuj</a>
+                            <a asp-action="Delete" asp-controller="Reservations" asp-route-id="@value.Id" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Usuń</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mb-4">
+        <b>Brak zajęć.</b>
+    </div>
+}
+
 <div>
-    <a asp-action="Index">Powrót</a>
+    <a href='javascript:history.go(-1)' class="btn btn-secondary mt-3"><i class="fas fa-long-arrow-alt-left"></i> Powrót</a>
 </div>
 
 @section Scripts {

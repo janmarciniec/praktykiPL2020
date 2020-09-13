@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edycja zajęć";
 }
 
-<h1>Edycja zajęć</h1>
+<h1 class="my-4">Edycja zajęć</h1>
 
 <hr />
 <div class="row">
@@ -39,14 +39,11 @@
                 <span asp-validation-for="SubjectId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary form-control" />
+                <a href='javascript:history.go(-1)' class="btn btn-secondary form-control mt-1">Powrót</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="RoomReservations" asp-route-id="@Model.RoomId">Powrót</a>
 </div>
 
 @section Scripts {

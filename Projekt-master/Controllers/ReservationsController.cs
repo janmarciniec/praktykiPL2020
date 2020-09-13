@@ -24,7 +24,7 @@ namespace Praktyki.Controllers
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reservations.Include(r => r.Group).Include(r => r.Hour).Include(r => r.Room).Include(r => r.Subject).Include(r => r.Teacher).Include(r => r.Day);
+            var applicationDbContext = _context.Reservations.Include(r => r.Group).Include(r => r.Hour).Include(r => r.Room).Include(r => r.Subject).Include(r => r.Teacher).Include(r => r.Day).OrderBy(r => r.Hour);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,17 +36,12 @@ namespace Praktyki.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            /*var applicationDbContext = _context.Reservations.Include(r => r.Group)
-                .Include(r => r.Hour).Include(r => r.Room).Include(r => r.Subject)
-                .Include(r => r.Teacher).Where(r => r.Room.Id == id);*/
-
             var room = await _context.Rooms.Include(x => x.Reservations).ThenInclude(x => x.Group)
                  .Include(x => x.Reservations).ThenInclude(x => x.Hour)
                  .Include(x => x.Reservations).ThenInclude(x => x.Subject)
                  .Include(x => x.Reservations).ThenInclude(x => x.Teacher)
                  .Include(x => x.Reservations).ThenInclude(x => x.Day)
                  .Where(x => x.Id == id).ToListAsync();
-
 
             return View(room);
         }
@@ -106,10 +101,9 @@ namespace Praktyki.Controllers
             {
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(RoomReservations), new { id = reservation.RoomId });
             }
 
-            
             return View(reservation);
         }
 

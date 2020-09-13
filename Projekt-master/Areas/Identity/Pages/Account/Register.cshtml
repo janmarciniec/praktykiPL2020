@@ -1,11 +1,12 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Rejestracja";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center my-3">@ViewData["Title"]</h1>
+<hr />
 
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -46,7 +47,7 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary form-control my-3">Zarejestruj się</button>
 </form>
 
 

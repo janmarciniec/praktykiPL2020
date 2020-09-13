@@ -21,6 +21,7 @@ namespace Praktyki.Controllers
         }
 
         // GET: Rooms
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Rooms.ToListAsync());
@@ -33,6 +34,7 @@ namespace Praktyki.Controllers
         }
 
         // GET: Rooms/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -43,6 +45,7 @@ namespace Praktyki.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Nr")] Room room)
         {
             if (ModelState.IsValid)
@@ -55,6 +58,7 @@ namespace Praktyki.Controllers
         }
 
         // GET: Rooms/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,6 +79,7 @@ namespace Praktyki.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nr")] Room room)
         {
             if (id != room.Id)
@@ -106,6 +111,7 @@ namespace Praktyki.Controllers
         }
 
         // GET: Rooms/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,6 +132,7 @@ namespace Praktyki.Controllers
         // POST: Rooms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var room = await _context.Rooms.FindAsync(id);

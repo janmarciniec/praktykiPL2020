@@ -10,7 +10,6 @@ using Praktyki.Models;
 
 namespace Praktyki.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class SubjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,12 +20,14 @@ namespace Praktyki.Controllers
         }
 
         // GET: Subjects
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Subjects.ToListAsync());
         }
 
         // GET: Subjects/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -37,6 +38,7 @@ namespace Praktyki.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name")] Subject subject)
         {
             if (ModelState.IsValid)
@@ -49,6 +51,7 @@ namespace Praktyki.Controllers
         }
 
         // GET: Subjects/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -69,6 +72,7 @@ namespace Praktyki.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Subject subject)
         {
             if (id != subject.Id)
@@ -100,6 +104,7 @@ namespace Praktyki.Controllers
         }
 
         // GET: Subjects/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -120,6 +125,7 @@ namespace Praktyki.Controllers
         // POST: Subjects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var subject = await _context.Subjects.FindAsync(id);
@@ -157,6 +163,7 @@ namespace Praktyki.Controllers
             }
 
             var reservation = await _context.Subjects.Include(x => x.Reservations).ThenInclude(x => x.Group)
+                 .Include(x => x.Reservations).ThenInclude(x => x.Day)
                  .Include(x => x.Reservations).ThenInclude(x => x.Room)
                  .Include(x => x.Reservations).ThenInclude(x => x.Hour)
                  .Include(x => x.Reservations).ThenInclude(x => x.Subject)

@@ -9735,25 +9735,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\niedz\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\emjan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\niedz\\Desktop\\Projekt-master\\Praktyki.csproj",
+      "projectUniqueName": "C:\\Users\\emjan\\Source\\Repos\\Praktyki\\Projekt-master\\Praktyki.csproj",
       "projectName": "Praktyki",
-      "projectPath": "C:\\Users\\niedz\\Desktop\\Projekt-master\\Praktyki.csproj",
-      "packagesPath": "C:\\Users\\niedz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\niedz\\Desktop\\Projekt-master\\obj\\",
+      "projectPath": "C:\\Users\\emjan\\Source\\Repos\\Praktyki\\Projekt-master\\Praktyki.csproj",
+      "packagesPath": "C:\\Users\\emjan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\emjan\\Source\\Repos\\Praktyki\\Projekt-master\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\niedz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\emjan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -9833,7 +9828,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
